@@ -6,9 +6,9 @@ use Chriscreates\Social\Actions\SocialCreateAuthAction;
 use Chriscreates\Social\Contracts\SocialCreateAuthContract;
 use Chriscreates\Social\Contracts\SocialFindAuthContract;
 use Chriscreates\Social\Services\SocialFindAuthService;
-use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class SocialServiceProvider extends LaravelServiceProvider
+class SocialServiceProvider extends ServiceProvider
 {
     protected $defer = false;
 

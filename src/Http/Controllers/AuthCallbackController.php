@@ -2,7 +2,6 @@
 
 namespace Chriscreates\Social\Http\Controllers;
 
-use App\Providers\RouteServiceProvider;
 use Chriscreates\Social\Contracts\SocialCreateAuthContract;
 use Chriscreates\Social\Contracts\SocialFindAuthContract;
 use Chriscreates\Social\Events\SocialAttempt;
@@ -18,7 +17,7 @@ class AuthCallbackController extends Controller
         SocialFindAuthContract $socialFindAuthContract,
         SocialCreateAuthContract $socialCreateAuthContract
     ) {
-        event(new SocialAttempt($provider));
+        SocialAttempt::dispatch($provider);
 
         $socialiteUser = Socialite::driver($provider)->user();
 
@@ -27,7 +26,7 @@ class AuthCallbackController extends Controller
         $socialClass = Social::getAuthClassName();
 
         if ($user instanceof $socialClass) {
-            event(new SocialFound($provider, $user));
+            SocialFound::dispatch($provider, $user);
         } else {
             $user = $socialCreateAuthContract->create([
                 'name' => $socialiteUser->getName(),
@@ -37,6 +36,6 @@ class AuthCallbackController extends Controller
 
         Auth::guard(config('social.guard'))->login($user);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect(config('social.home'), 303);
     }
 }

@@ -8,4 +8,6 @@ return [
 
     'guard' => null,
 
+    'home' => 'home',
+
 ];

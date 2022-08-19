@@ -3,7 +3,6 @@
 [![Version](https://img.shields.io/packagist/v/chrisjk123/laravel-social.svg?include_prereleases&style=flat&label=packagist)](https://packagist.org/packages/chrisjk123/laravel-social)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE.md)
 ![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/chrisjk123/laravel-social/run-tests?style=flat&label=tests)
-[![Quality Score](https://img.shields.io/scrutinizer/g/chrisjk123/laravel-social.svg?style=flat)](https://scrutinizer-ci.com/g/chrisjk123/laravel-social)
 
 This package serves as a quick, helpful wrapper around Laravel Socialite.
 

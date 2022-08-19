@@ -1,3 +1,4 @@
+
 # Add php-based helpers to a Laravel app
 
 [![Version](https://img.shields.io/packagist/v/chrisjk123/laravel-social.svg?include_prereleases&style=flat&label=packagist)](https://packagist.org/packages/chrisjk123/laravel-social)
@@ -5,6 +6,8 @@
 ![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/chrisjk123/laravel-social/run-tests?style=flat&label=tests)
 
 This package serves as a quick, helpful wrapper around Laravel Socialite.
+
+**NOTE**: currently only Github login is fully supported and tested.
 
 ## Installation
 
@@ -14,9 +17,31 @@ You can install the package via composer:
 composer require chrisjk123/laravel-social
 ```
 
+You can optionally publish the config file with:
+
+```bash
+php artisan vendor:publish --provider="Chriscreates\Social\Providers\SocialServiceProvider" --tag="social-config"
+```
+
+Be sure to update `config\services.php` with the following:
+
+```php
+'google' => [
+	'client_id' => env('GOOGLE_CLIENT_ID'),
+	'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+	'redirect' => env('GOOGLE_REDIRECT'),
+],
+```
+
+Make sure your `use Illuminate\Foundation\Auth\User  as  Authenticatable;` model is passwordless i.e. the password field is nullable.
+
 ## Usage
 
-TODO
+To login with a given provider, simply pass in the provider name and have the user visit the route:
+
+```php
+route('auth.provider.callback',  ['provider'  =>  'google'])
+```
 
 ### Testing
 

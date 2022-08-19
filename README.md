@@ -1,5 +1,5 @@
 
-# Add php-based helpers to a Laravel app
+# Quickstart wrapper for Laravel using Laravel Socialite.
 
 [![Version](https://img.shields.io/packagist/v/chrisjk123/laravel-social.svg?include_prereleases&style=flat&label=packagist)](https://packagist.org/packages/chrisjk123/laravel-social)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE.md)

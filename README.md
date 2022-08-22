@@ -1,4 +1,5 @@
 
+
 # Quickstart wrapper for Laravel using Laravel Socialite.
 
 [![Version](https://img.shields.io/packagist/v/chrisjk123/laravel-social.svg?include_prereleases&style=flat&label=packagist)](https://packagist.org/packages/chrisjk123/laravel-social)
@@ -7,7 +8,7 @@
 
 This package serves as a quick, helpful wrapper around Laravel Socialite.
 
-**NOTE**: currently only Github login is fully supported and tested.
+**NOTE**: all OAuth authentication logins made by [Laravel Socialite](https://github.com/laravel/socialite) are supported.
 
 ## Installation
 
@@ -23,17 +24,24 @@ You can optionally publish the config file with:
 php artisan vendor:publish --provider="Chriscreates\Social\Providers\SocialServiceProvider" --tag="social-config"
 ```
 
-Be sure to update `config\services.php` with the following:
+Be sure to update `config\services.php` following [Laravel Socialite's documentation](https://laravel.com/docs/socialite).
+
 
 ```php
-'google' => [
-	'client_id' => env('GOOGLE_CLIENT_ID'),
-	'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-	'redirect' => env('GOOGLE_REDIRECT'),
-],
+<?php
+  
+return [
+    // as an example:
+    'google' => [
+	    'client_id' => env('GOOGLE_CLIENT_ID'),
+	    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+	    'redirect' => env('GOOGLE_REDIRECT'),
+    ],
+    
+];
 ```
 
-Make sure your `use Illuminate\Foundation\Auth\User  as  Authenticatable;` model is passwordless i.e. the password field is nullable.
+Make sure your `use Illuminate\Foundation\Auth\User as Authenticatable;` model is passwordless i.e. the password field is nullable.
 
 ## Usage
 
@@ -42,6 +50,14 @@ To login with a given provider, simply pass in the provider name and have the us
 ```php
 route('auth.provider.callback',  ['provider'  =>  'google'])
 ```
+
+## Customization
+
+The auth validation and creation process may be customized via "Action" classes. Be sure to review this repository's source code and read up on the [Laravel Fortify](https://laravel.com/docs/fortify) docs as an example.
+
+**Contracts**:
+`Chriscreates\Social\Contracts\SocialCreateAuthContract`
+`Chriscreates\Social\Contracts\SocialFindAuthContract`
 
 ### Testing
 
